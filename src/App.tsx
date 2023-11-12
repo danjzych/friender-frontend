@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import userContext from "./userContext";
+import userContext from "./contexts/userContext";
 import {BrowserRouter} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import FrienderAPI from './api';
@@ -72,7 +72,7 @@ function App() {
   return (
     <div className="App">
       {isLoaded ?
-        <userContext.Provider value={{ user, token }}>
+        <userContext.Provider value={{ user }}>
           <BrowserRouter>
             <Navbar logout={logout} user={user}/>
             <RoutesList user={user} signup={signup} login={login} update={update} addImage={addImage}/>

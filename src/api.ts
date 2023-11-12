@@ -2,7 +2,9 @@ import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
-
+/**
+ * Class and methods for interacting with Friender backend.
+ */
 class FrienderAPI {
 
   static token = "";

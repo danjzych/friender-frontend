@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Homepage from "./Homepage";
+import Homepage from "./components/common/Homepage";
 import FriendList from "./FriendList";
 import SignupForm from "./SignupForm";
-import LoginForm from "./LoginForm";
+import LoginForm from "./components/forms/LoginForm";
 import Profile from "./Profile";
 import ProfileForm from "./ProfileForm";
 import ProfileImageform from "./ProfileImageForm";

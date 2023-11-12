@@ -5,21 +5,19 @@ interface UserInterface {
   interests: string;
   location: number;
   radius: number;
-  images: string[]
-}
-
-interface SignupInterface {
-  username: string;
-  password: string;
-  hobbies: string;
-  interests: string;
-  location: number | null;
-  radius: number | null;
+  images?: string[]
 }
 
 interface LoginInterface {
   username: string;
   password: string
+}
+
+interface SignupInterface extends LoginInterface {
+  hobbies: string;
+  interests: string;
+  location: number | null;
+  radius: number | null;
 }
 
 interface UpdateInterface {
