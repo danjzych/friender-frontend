@@ -6,16 +6,31 @@ import jwt_decode from "jwt-decode";
 import FrienderAPI from './api';
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './interfaces';
 import RoutesList from "./RoutesList";
-import Navbar from './Navbar';
+import Navbar from './components/common/Navbar';
 import IsLoading from './IsLoading';
 
 
 function App() {
-
-
   const [user, setUser] = useState<UserInterface | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(function getUserData(){
+    async function fetchUserData(){
+      if (token){
+        try {
+          FrienderAPI.token = token;
+          const decoded: {username: string}  = jwt_decode(token);
+          const userData: UserInterface = await FrienderAPI.getUserInfo(decoded.username);
+          setUser(userData);
+        } catch(err) {
+          console.log()
+        }
+      }
+      setIsLoaded(true);
+    }
+    fetchUserData();
+  }, [token]);
 
   function updateToken(token: string | null) {
     setToken(token);
@@ -50,37 +65,14 @@ function App() {
     setUser(newUser)
   }
 
-
-  useEffect(function getUserData(){
-    async function fetchUserData(){
-      if (token){
-        try {
-          FrienderAPI.token = token;
-          const decoded: {username: string}  = jwt_decode(token);
-          const userData: UserInterface = await FrienderAPI.getUserInfo(decoded.username);
-          setUser(userData);
-        } catch(err) {
-          console.log()
-        }
-      }
-      setIsLoaded(true);
-    }
-    fetchUserData();
-  }, [token])
-
-
   return (
     <div className="App">
-      {isLoaded ?
         <userContext.Provider value={{ user }}>
           <BrowserRouter>
-            <Navbar logout={logout} user={user}/>
-            <RoutesList user={user} signup={signup} login={login} update={update} addImage={addImage}/>
+            <Navbar logout={logout} />
+            {isLoaded ? <RoutesList signup={signup} login={login} update={update} addImage={addImage}/> : <IsLoading /> }
           </BrowserRouter>
         </userContext.Provider>
-        :
-        <IsLoading />
-      }
     </div>
   );
 }

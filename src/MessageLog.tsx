@@ -1,18 +1,20 @@
-import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import FrienderAPI from "./api";
+import { useState, useEffect, useContext } from "react";
+import userContext from "./contexts/userContext";
 import IsLoading from "./IsLoading";
+import FrienderAPI from "./api";
 import './MessageLog.css'
 
 
-function MessageLog ({ user } ){
-
-  const params = useParams();
-  const {matchName } = params;
-
+function MessageLog (){
   const [messageText, setMessageText] = useState("");
   const [messages, setMessages] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const params = useParams();
+  const { matchName } = params;
+
+  const { user } = useContext(userContext);
 
   useEffect(function getMessages() {
     fetchMessages()

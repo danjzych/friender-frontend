@@ -1,20 +1,18 @@
-import "./FriendList.css";
+import { useState, useEffect, useContext } from "react";
+import userContext from "./contexts/userContext";
 import { UserInterface } from "./interfaces";
-import { useState, useEffect } from "react";
 import FriendCard from "./FriendCard";
 import RatingForm from "./RatingForm";
 import IsLoading from "./IsLoading";
 import FrienderAPI from "./api";
+import "./FriendList.css";
 
-interface FriendListProps {
-  user: UserInterface;
-}
-
-function FriendList({ user }: FriendListProps) {
-
+function FriendList() {
   const [users, setUsers] = useState(null);
+  const { user } = useContext(userContext);
 
   const currUser = users ? users[0] : undefined;
+
 
   useEffect(function getUsers() {
     async function fetchUsers() {
@@ -25,7 +23,7 @@ function FriendList({ user }: FriendListProps) {
   }, [])
 
 
-  async function rateUser(rater, rated, isLiked){
+  async function rateUser(rater:string, rated:string, isLiked:string){
     await FrienderAPI.rateUser(rater, rated, isLiked);
     setUsers(prevUsers => {
       const newUsers = prevUsers.filter(user => user.username !== rated);

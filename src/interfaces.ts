@@ -5,7 +5,11 @@ interface UserInterface {
   interests: string;
   location: number;
   radius: number;
-  images?: string[]
+  image_urls?: string[]
+}
+
+interface MatchInterface extends UserInterface {
+  distance: number;
 }
 
 interface LoginInterface {

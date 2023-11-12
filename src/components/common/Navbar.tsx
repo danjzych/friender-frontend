@@ -1,7 +1,10 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom";
+import { useContext } from "react";
+import userContext from "../../contexts/userContext";
 import './Navbar.css'
 
-function Navbar({user, logout}) {
+function Navbar({ logout }) {
+    const { user } = useContext(userContext);
 
 
     return(<nav className='Navbar text-accent'>

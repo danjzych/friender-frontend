@@ -1,15 +1,13 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useContext } from 'react';
+import userContext from './contexts/userContext';
 import { UserInterface } from './interfaces';
 import FrienderAPI from './api';
 import MatchCard from './MatchCard';
 import IsLoading from './IsLoading';
 
-interface MatchListProps {
-    user: UserInterface
-}
-
-function MatchesList({user}: MatchListProps) {
+function MatchesList() {
     const [matches, setMatches] = useState<UserInterface[]>(null)
+    const { user } = useContext(userContext);
 
     useEffect(function getMatches() {
         async function fetchMatches() {

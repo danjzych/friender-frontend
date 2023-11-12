@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
+import { useContext } from "react";
+import userContext from "./contexts/userContext";
 import FriendCard from "./FriendCard";
 
 
-function Profile({user}) {
+function Profile() {
+    const { user } = useContext(userContext);
 
-    // {username, hobbies, interests, images}:
     return (
         <div className="Profile">
             <FriendCard user={user} />

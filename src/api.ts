@@ -109,7 +109,7 @@ class FrienderAPI {
     return data;
   };
 
-  static async rateUser(rater:string , rated: string, isLiked:string): Promise<void> {
+  static async rateUser(rater:string, rated: string, isLiked:string): Promise<void> {
     const response = await fetch(`${BASE_URL}/rating`, {
       method: 'POST',
       body: JSON.stringify({
