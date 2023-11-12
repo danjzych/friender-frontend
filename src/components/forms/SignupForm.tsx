@@ -1,6 +1,6 @@
 import "./SignupForm.css";
 import { useState } from "react";
-import { SignupInterface } from "./interfaces";
+import { SignupInterface } from "../../types/interfaces";
 
 
 interface SignUpFormPropsInterface {

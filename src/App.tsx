@@ -4,10 +4,10 @@ import userContext from "./contexts/userContext";
 import {BrowserRouter} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import FrienderAPI from './api';
-import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './interfaces';
-import RoutesList from "./RoutesList";
+import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from './types/interfaces';
+import RoutesList from "./routes/RoutesList";
 import Navbar from './components/common/Navbar';
-import IsLoading from './IsLoading';
+import IsLoading from './components/common/IsLoading';
 
 
 function App() {

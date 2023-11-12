@@ -1,6 +1,6 @@
 import './MatchCard.css'
 import {Link} from "react-router-dom";
-import FriendCard from "./FriendCard";
+import FriendCard from "../friends/FriendCard";
 function MatchCard( {user, match} ){
 
   const {username, hobbies, interests, image_urls} = match;

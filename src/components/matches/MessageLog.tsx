@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import userContext from "./contexts/userContext";
-import IsLoading from "./IsLoading";
-import FrienderAPI from "./api";
+import userContext from "../../contexts/userContext";
+import IsLoading from "../common/IsLoading";
+import FrienderAPI from "../../api";
 import './MessageLog.css'
 
 

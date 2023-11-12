@@ -1,15 +1,15 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
-import userContext from "./contexts/userContext";
-import Homepage from "./components/common/Homepage";
-import FriendList from "./FriendList";
-import SignupForm from "./SignupForm";
-import LoginForm from "./components/forms/LoginForm";
-import Profile from "./Profile";
-import ProfileForm from "./ProfileForm";
-import ProfileImageform from "./ProfileImageForm";
-import MatchesList from "./MatchesList";
-import MessageLog from "./MessageLog";
+import userContext from "../contexts/userContext";
+import Homepage from "../components/common/Homepage";
+import FriendList from "../components/friends/FriendList";
+import SignupForm from "../components/forms/SignupForm";
+import LoginForm from "../components/forms/LoginForm";
+import Profile from "../components/Profile";
+import ProfileForm from "../components/forms/ProfileForm";
+import ProfileImageform from "../components/forms/ProfileImageForm";
+import MatchesList from "../components/matches/MatchesList";
+import MessageLog from "../components/matches/MessageLog";
 
 
 interface RoutesListInterface {

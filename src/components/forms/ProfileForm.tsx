@@ -1,6 +1,6 @@
 import "./ProfileForm.css";
 import { useState } from "react";
-import { UserInterface, UpdateInterface } from "./interfaces";
+import { UserInterface, UpdateInterface } from "../../types/interfaces";
 
 interface ProfileFormProps {
   user: UserInterface;

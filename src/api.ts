@@ -1,4 +1,4 @@
-import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from "./interfaces";
+import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from "./types/interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 

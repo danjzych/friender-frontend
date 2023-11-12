@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { UserInterface } from "../interfaces";
+import { UserInterface } from "../types/interfaces";
 
 const defaultContext: {
   user: UserInterface | null,

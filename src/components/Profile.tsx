@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react";
-import userContext from "./contexts/userContext";
-import FriendCard from "./FriendCard";
+import userContext from "../contexts/userContext";
+import FriendCard from "./friends/FriendCard";
 
 
 function Profile() {

@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import userContext from './contexts/userContext';
-import { UserInterface } from './interfaces';
-import FrienderAPI from './api';
+import userContext from '../../contexts/userContext';
+import { UserInterface } from '../../types/interfaces';
+import FrienderAPI from '../../api';
 import MatchCard from './MatchCard';
-import IsLoading from './IsLoading';
+import IsLoading from '../common/IsLoading';
 
 function MatchesList() {
     const [matches, setMatches] = useState<UserInterface[]>(null)

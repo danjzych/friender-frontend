@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import userContext from "./contexts/userContext";
-import { UserInterface } from "./interfaces";
+import userContext from "../../contexts/userContext";
+import { UserInterface } from "../../types/interfaces";
 import FriendCard from "./FriendCard";
-import RatingForm from "./RatingForm";
-import IsLoading from "./IsLoading";
-import FrienderAPI from "./api";
+import RatingForm from "../forms/RatingForm";
+import IsLoading from "../common/IsLoading";
+import FrienderAPI from "../../api";
 import "./FriendList.css";
 
 function FriendList() {

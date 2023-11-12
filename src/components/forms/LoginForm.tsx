@@ -1,6 +1,6 @@
 import "./LoginForm.css";
 import React, { useState } from "react";
-import { LoginInterface } from "../../interfaces";
+import { LoginInterface } from "../../types/interfaces";
 
 interface LoginFormProps {
   handleSubmit: (formData: LoginInterface) => void;
