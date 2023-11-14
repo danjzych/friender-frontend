@@ -11,7 +11,7 @@ function Navbar({ logout }) {
             {!user && <>
                 <NavLink to='/login' className="hover:opacity-80">Login</NavLink>
                 <NavLink to='/signup' className="hover:opacity-80">Signup</NavLink>
-            <Link to="/"><h1 className="prose">Friender</h1></Link>
+            <Link to="/"><h1 className="text-4xl navbar-center font-extrabold text-primary">Friender</h1></Link>
             </>}
             {user &&
             <>

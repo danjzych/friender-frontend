@@ -39,13 +39,10 @@ function FriendList() {
   return (
     <div className="absolute flex justify-center items-center h-screen w-screen bg-inherit">
       {users ?
-        <div className="" key={`${currUser.username}-container`} >
           <FriendCard key={`${currUser.username}-FriendCard`} friend={currUser} rateUser={rateUser} />
-        </div>
       :
       <IsLoading />
       }
-      {}
     </div>
   );
 }

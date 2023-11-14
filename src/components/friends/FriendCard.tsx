@@ -15,16 +15,18 @@ function FriendCard({ friend, rateUser}: FriendCardProps){
     const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.jpg'
 
     return (
-        <div className="card w-96 bg-base-100 border-2 border-base-200 rounded-xl shadow-2xl">
+        <div className="card w-96 bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
             <figure className="pt-4">
                 <img src={profilePic} width='200px' className="rounded-xl"/>
             </figure>
             <div className="card-body text-center">
+                <div className="flex justify-between items-center">
                 <h2 className="card-title">{username}</h2>
+                {distance && <small className="font-extralight italic text-base-300">{distance} miles away</small>}
+                </div>
                 <p>Hobbies are: {hobbies}</p>
                 <p>Interests include: {interests}</p>
-                {distance && <p>{distance} miles away</p>}
-                <div className="card-actions">
+                <div className="card-actions justify-evenly">
                 <RatingForm
                     key={`${username}-RatingForm`}
                     rater={user.username}
