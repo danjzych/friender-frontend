@@ -66,7 +66,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="bg-base-100">
         <userContext.Provider value={{ user }}>
           <BrowserRouter>
             <Navbar logout={logout} />

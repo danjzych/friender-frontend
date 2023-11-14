@@ -1,4 +1,4 @@
-import './FriendCard.css';
+// import './FriendCard.css';
 
 function FriendCard( {user} ){
     const {username, hobbies, interests, image_urls, distance} = user;

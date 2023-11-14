@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import userContext from "../../contexts/userContext";
-import { UserInterface } from "../../types/interfaces";
 import FriendCard from "./FriendCard";
 import RatingForm from "../forms/RatingForm";
 import IsLoading from "../common/IsLoading";
 import FrienderAPI from "../../api";
-import "./FriendList.css";
+// import "./FriendList.css";
 
 function FriendList() {
   const [users, setUsers] = useState(null);
@@ -40,7 +39,7 @@ function FriendList() {
   }
 
   return (
-    <div className="FriendList">
+    <div className="absolute flex justify-center items-center h-screen w-screen bg-inherit">
       {users ?
         <div className="FriendList-container" key={`${currUser.username}-container`} >
           <FriendCard key={`${currUser.username}-FriendCard`} user={currUser} />

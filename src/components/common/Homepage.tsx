@@ -1,6 +1,8 @@
+import silhouettes from "../../images/silhouettes.jpg"
+
 function Homepage() {
-    return (<div className="HomePage">
-        <h1>Friender</h1>
+    return (<div className=" absolute h-screen w-screen" style={{backgroundImage: silhouettes}}>
+        {/* <img src={silhouettes} className="" /> */}
     </div>)
 }
 

@@ -13,7 +13,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["cupcake"],
+    themes: ["bumblebee"],
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };
