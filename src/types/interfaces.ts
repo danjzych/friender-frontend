@@ -33,6 +33,7 @@ interface UpdateInterface {
 
 export type {
   UserInterface,
+  MatchInterface,
   SignupInterface,
   LoginInterface,
   UpdateInterface

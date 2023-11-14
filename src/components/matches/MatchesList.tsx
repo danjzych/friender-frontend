@@ -19,7 +19,7 @@ function MatchesList() {
 
     return(<div>
         <h2>Matches:</h2>
-        {matches ? matches.map(m => <MatchCard user={user}  match={m} key={m.username}/>) : <IsLoading />}
+        {matches ? matches.map(m => <MatchCard match={m} key={m.username}/>) : <IsLoading />}
     </div>)
 }
 export default MatchesList
