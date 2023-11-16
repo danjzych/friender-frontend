@@ -9,7 +9,7 @@ function Profile() {
 
     return (
         <div className="Profile">
-            <FriendCard friend={user} />
+            {/* <FriendCard friend={user} /> */}
             <Link to="/profile/edit" ><button >Edit Profile</button></Link>
             <Link to='/profile/add-image'><button>Add Image</button></Link>
         </div>
