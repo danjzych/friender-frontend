@@ -9,7 +9,7 @@ function Profile() {
 
     return (
         <div className="position absolute top-16 w-full flex justify-center">
-            <FriendCard friend={user} />
+            {/* <FriendCard friend={user} /> */}
             <Link to="/profile/edit" ><button >Edit Profile</button></Link>
             {/* <Link to='/profile/add-image'><button>Add Image</button></Link> */}
         </div>

@@ -10,6 +10,7 @@ import ProfileForm from "../components/forms/ProfileForm";
 import ProfileImageform from "../components/forms/ProfileImageForm";
 import MatchesList from "../components/matches/MatchesList";
 import MessageLog from "../components/matches/MessageLog";
+import { MatchInterface } from "../types/interfaces";
 
 
 interface RoutesListInterface {
@@ -17,9 +18,12 @@ interface RoutesListInterface {
   login: ({ }) => void;
   update: ({ }) => void;
   addImage: ({ })=> void;
+  isLoaded: Boolean;
+  users: MatchInterface[]
+  rateUser: ({ })=> void;
 }
 
-function RoutesList({signup, login, update, addImage }: RoutesListInterface) {
+function RoutesList({signup, login, update, addImage, isLoaded, users, rateUser }: RoutesListInterface) {
   const { user } = useContext(userContext);
 
   return (
@@ -30,7 +34,7 @@ function RoutesList({signup, login, update, addImage }: RoutesListInterface) {
           <Route path="/profile" element={<Profile /> } />
           <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
-          <Route path="/people" element={<FriendList />} />
+          <Route path="/people" element={<FriendList users={users} isLoaded={isLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesList />} />
           <Route path='/messages/:matchName' element={<MessageLog />} />
         </>
