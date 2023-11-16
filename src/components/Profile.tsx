@@ -8,10 +8,10 @@ function Profile() {
     const { user } = useContext(userContext);
 
     return (
-        <div className="Profile">
-            {/* <FriendCard friend={user} /> */}
+        <div className="position absolute top-16 w-full flex justify-center">
+            <FriendCard friend={user} />
             <Link to="/profile/edit" ><button >Edit Profile</button></Link>
-            <Link to='/profile/add-image'><button>Add Image</button></Link>
+            {/* <Link to='/profile/add-image'><button>Add Image</button></Link> */}
         </div>
     )
 }
