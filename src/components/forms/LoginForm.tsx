@@ -48,6 +48,7 @@ function LoginForm({ handleSubmit }: LoginFormProps) {
           <input type="password" onChange={handleChange}
             name="password"
             value={formData.password}
+            placeholder="********"
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>

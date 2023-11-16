@@ -8,8 +8,8 @@ interface FriendCardProps {
     rateUser?: (rater:string, rated:string, isLiked:string) => Promise<void>;
 }
 
-function FriendCard({ friend, rateUser}: FriendCardProps){
-    const {username, hobbies, interests, image_urls, distance} = friend;
+function FriendCard({ friend, rateUser }: FriendCardProps){
+    const { username, hobbies, interests, image_urls, distance } = friend;
     const { user } = useContext(userContext)
 
     const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.jpg'
