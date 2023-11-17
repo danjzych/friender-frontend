@@ -16,7 +16,7 @@ function FriendCard({ friend, rateUser }: FriendCardProps){
 
     return (
         <div className="card w-96 bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
-            <figure className="pt-4">
+            <figure className="py-4 bg-primary border-b border-base-200 shadow-sm">
                 <img src={profilePic} width='200px' className="rounded-xl"/>
             </figure>
             <div className="card-body text-center">
