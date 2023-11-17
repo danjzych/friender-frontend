@@ -12,12 +12,12 @@ function FriendCard({ friend, rateUser }: FriendCardProps){
     const { username, hobbies, interests, image_urls, distance } = friend;
     const { user } = useContext(userContext)
 
-    const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.jpg'
+    const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.png'
 
     return (
-        <div className="card w-96 bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
+        <div className="card w-3/5 max-w-4xl bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
             <figure className="py-4 bg-primary border-b border-base-200 shadow-sm">
-                <img src={profilePic} width='200px' className="rounded-xl"/>
+                <img src={profilePic} className="rounded-xl max-h-96" loading="lazy" />
             </figure>
             <div className="card-body text-center">
                 <div className="flex justify-between items-center">

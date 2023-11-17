@@ -39,7 +39,7 @@ function App() {
     async function getNearbyUsers() {
       const eligibleUsers = await FrienderAPI.getNearMe(user.username);
       setNearbyUsers(eligibleUsers);
-      setIsUsersLoaded(true)
+      setIsUsersLoaded(true);
     };
 
     if (user) getNearbyUsers();
