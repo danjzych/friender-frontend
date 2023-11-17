@@ -18,12 +18,12 @@ interface RoutesListInterface {
   login: ({ }) => void;
   update: ({ }) => void;
   addImage: ({ })=> void;
-  isLoaded: Boolean;
-  users: MatchInterface[]
-  rateUser: ({ })=> void;
+  isUsersLoaded: Boolean;
+  nearbyUsers: MatchInterface[];
+  rateUser: (rater:string, rated:string, isLiked:string)=> Promise<void>;
 }
 
-function RoutesList({signup, login, update, addImage, isLoaded, users, rateUser }: RoutesListInterface) {
+function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers, rateUser }: RoutesListInterface) {
   const { user } = useContext(userContext);
 
   return (
@@ -34,7 +34,7 @@ function RoutesList({signup, login, update, addImage, isLoaded, users, rateUser 
           <Route path="/profile" element={<Profile /> } />
           <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
-          <Route path="/people" element={<FriendList users={users} isLoaded={isLoaded} rateUser={rateUser} />} />
+          <Route path="/people" element={<FriendList nearbyUsers={nearbyUsers} isUsersLoaded={isUsersLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesList />} />
           <Route path='/messages/:matchName' element={<MessageLog />} />
         </>

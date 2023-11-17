@@ -1,4 +1,4 @@
-import { UserInterface, SignupInterface, LoginInterface, UpdateInterface } from "./types/interfaces";
+import { UserInterface, SignupInterface, LoginInterface, UpdateInterface, MatchInterface } from "./types/interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
@@ -36,7 +36,7 @@ class FrienderAPI {
     return data.matches;
   }
 
-  static async getNearMe(username: string): Promise<UserInterface[]>{
+  static async getNearMe(username: string): Promise<MatchInterface[]>{
     const response = await fetch(`${BASE_URL}/users/${username}/nearme`, {
       method: 'GET',
       headers: {'token': this.token }

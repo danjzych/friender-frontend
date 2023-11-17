@@ -1,16 +1,11 @@
-import {useContext } from "react";
-import userContext from "../../contexts/userContext";
 import FriendCard from "./FriendCard";
 import IsLoading from "../common/IsLoading";
 
-function FriendList({ users, isLoaded, rateUser }) {
-  const { user } = useContext(userContext);
+function FriendList({ nearbyUsers, isUsersLoaded, rateUser }) {
 
-  const currUser = users ? users[0] : undefined;
-
-  if (users !== null && users.length === 0){
+  if (nearbyUsers !== null && nearbyUsers.length === 0){
     return (
-      <div className="FriendList">
+      <div className="absolute flex justify-center items-center h-screen w-screen bg-inherit">
         <p>You have run out of people to rate =(</p>
       </div>
     )
@@ -18,8 +13,8 @@ function FriendList({ users, isLoaded, rateUser }) {
 
   return (
     <div className="absolute flex justify-center items-center h-screen w-screen bg-inherit">
-      {isLoaded ?
-          <FriendCard key={`${currUser.username}-FriendCard`} friend={currUser} rateUser={rateUser} />
+      {isUsersLoaded ?
+          <FriendCard key={`${nearbyUsers[0].username}-FriendCard`} friend={nearbyUsers[0]} rateUser={rateUser} />
       :
       <IsLoading />
       }

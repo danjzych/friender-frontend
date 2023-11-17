@@ -12,9 +12,10 @@ import IsLoading from './components/common/IsLoading';
 
 function App() {
   const [user, setUser] = useState<UserInterface | null>(null);
-  const [users, setUsers] = useState<MatchInterface[] | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [isLoaded, setIsLoaded] = useState(false);
+  const [nearbyUsers, setNearbyUsers] = useState<MatchInterface[] | null>(null);
+  const [isUsersLoaded, setIsUsersLoaded] = useState(false);
 
   useEffect(function getUserData(){
     async function fetchUserData(){
@@ -25,8 +26,6 @@ function App() {
           const userData: UserInterface = await FrienderAPI.getUserInfo(decoded.username);
           setUser(userData);
 
-          const eligibleUsers = await FrienderAPI.getNearMe(userData.username);
-          setUsers(eligibleUsers);
         } catch(err) {
           console.log()
         }
@@ -35,6 +34,16 @@ function App() {
     }
     fetchUserData();
   }, [token]);
+
+  useEffect(() => {
+    async function getNearbyUsers() {
+      const eligibleUsers = await FrienderAPI.getNearMe(user.username);
+      setNearbyUsers(eligibleUsers);
+      setIsUsersLoaded(true)
+    };
+
+    if (user) getNearbyUsers();
+  }, [user])
 
   function updateToken(token: string | null) {
     setToken(token);
@@ -55,6 +64,7 @@ function App() {
 
   async function logout(){
     setUser(null);
+    setNearbyUsers(null);
     updateToken(null);
   }
 
@@ -70,7 +80,7 @@ function App() {
 
   async function rateUser(rater:string, rated:string, isLiked:string): Promise<void>{
     await FrienderAPI.rateUser(rater, rated, isLiked);
-    setUsers(prevUsers => {
+    setNearbyUsers(prevUsers => {
       const newUsers = prevUsers.filter(user => user.username !== rated);
       return newUsers;
     })
@@ -78,10 +88,18 @@ function App() {
 
   return (
     <div className="bg-base-100">
-        <userContext.Provider value={{ user }}>
+        <userContext.Provider value={{ user, isLoaded }}>
           <BrowserRouter>
             <Navbar logout={logout} />
-            {isLoaded ? <RoutesList signup={signup} login={login} update={update} addImage={addImage} isLoaded={isLoaded} users={users} rateUser={rateUser} /> : <IsLoading /> }
+            {isLoaded ? <RoutesList signup={signup}
+                                    login={login}
+                                    update={update}
+                                    addImage={addImage}
+                                    isUsersLoaded={isUsersLoaded}
+                                    nearbyUsers={nearbyUsers}
+                                    rateUser={rateUser}
+                          />
+                      : <IsLoading /> }
           </BrowserRouter>
         </userContext.Provider>
     </div>
