@@ -1,12 +1,15 @@
 import thumbsUp from "../../images/icons/thumbs-up.svg";
 import thumbsDown from "../../images/icons/thumbs-down.svg";
-import { SyntheticEvent } from "react";
 
 function RatingForm({rater, rated, handleRating}) {
 
   function handleClick(evt): void {
-    let isLiked = Boolean(evt.target.dataset.isliked);
-    handleRating(rater, rated, isLiked);
+    const rating = evt.target.dataset.isliked
+    // const isLiked = Boolean(rating);
+    // console.log(evt.target.dataset.isliked);
+    // console.log(rating)
+    // console.log(isLiked)
+    handleRating(rater, rated, rating);
   }
 
   return (

@@ -24,7 +24,7 @@ class FrienderAPI {
     return data;
   }
 
-  static async getMatches(username: string): Promise<UserInterface[]>{
+  static async getMatches(username: string): Promise<MatchInterface[]>{
     const response = await fetch(`${BASE_URL}/users/${username}/matches`, {
       method: 'GET',
       headers: {'token': this.token}
