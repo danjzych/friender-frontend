@@ -2,7 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import userContext from '../../contexts/userContext';
 import { MatchInterface } from '../../types/interfaces';
 import MatchesList from './MatchesList';
+import FocusedMatch from './FocusedMatch';
 import FrienderAPI from '../../api';
+import MatchCard from './MatchCard';
 
 function MatchesContainer() {
     const [matches, setMatches] = useState<MatchInterface[]>(null);
@@ -20,8 +22,10 @@ function MatchesContainer() {
           fetchMatches();
     }, [])
 
-    return(<div className="position absolute top-16 min-w-screen h-[calc(100vh_-_4rem)]">
+    return(<div className="position absolute top-16 w-screen h-[calc(100vh_-_4rem)] grid grid-cols-5">
         {matchesLoad && <MatchesList matches={matches} setSelectedMatch={setSelectedMatch} selectedMatch={selectedMatch}/>}
+        {matchesLoad && <FocusedMatch match={matches[selectedMatch]} />}
+
     </div>)
 }
 export default MatchesContainer;

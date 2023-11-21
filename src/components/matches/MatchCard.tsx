@@ -1,16 +1,17 @@
-import {Link} from "react-router-dom";
-import FriendCard from "../friends/FriendCard";
+import { MatchInterface } from "../../types/interfaces";
 
-function MatchCard( {match} ){
+interface MatchCardProps {
+  match: MatchInterface;
+}
 
+function MatchCard( { match }: MatchCardProps ) {
   const {username, hobbies, interests, image_urls} = match;
 
-  return (
-    <>
-      <FriendCard friend={match} />
-      <Link to={`/messages/${match.username}`}><button className="MatchCard-button">View Messages</button></Link>
-    </>
-  )
+  return (<div className="col-span-1 border-r-2">
+    <figure className="h-1/5">
+      <img src={image_urls[0]} className="object-cover" loading="lazy" />
+    </figure>
+  </div>)
 }
 
 

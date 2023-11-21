@@ -15,9 +15,9 @@ function FriendCard({ friend, rateUser }: FriendCardProps){
     const profilePic = image_urls[image_urls.length - 1] || './default-profile-pic.png'
 
     return (
-        <div className="card w-3/5 max-w-4xl bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
+        <div className="card w-2/5 2xl:w-3/5 2xl:max-w-4xl bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
             <figure className="py-4 bg-primary border-b border-base-200 shadow-sm">
-                <img src={profilePic} className="rounded-xl max-h-96" loading="lazy" />
+                <img src={profilePic} className="rounded-xl max-h-72 2xl:max-h-96" loading="lazy" />
             </figure>
             <div className="card-body text-center">
                 <div className="flex justify-between items-center">

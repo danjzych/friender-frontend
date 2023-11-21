@@ -9,7 +9,7 @@ interface MatchesListProps {
 function MatchesList({ matches, setSelectedMatch, selectedMatch }: MatchesListProps) {
 
 
-    return (<div className="h-full w-40 border-2 border-t-0 border-neutral-600">
+    return (<div className="h-full col-span-1 border-2 border-t-0 border-neutral-600">
         <div>
             <h3 className="text-xl py-4 text-center border-b-2 border-neutral-600 shadow-xl bg-neutral-200 font-semibold">
                 Matches
@@ -25,7 +25,7 @@ function MatchesList({ matches, setSelectedMatch, selectedMatch }: MatchesListPr
                     active:opacity-60`}
                     key={idx}
                     >
-                        <img src={m.image_urls[0]} className="w-6 h-8 rounded-full border-2 border-primary overflow-clip" />
+                        <img src={m.image_urls[0]} className="w-8 h-12 rounded-full border-2 border-primary overflow-clip" />
                         <div>{m.username}</div>
                     </div>)}
         </div>

@@ -5,17 +5,17 @@ import { SignupInterface } from "../../types/interfaces";
 interface SignUpFormPropsInterface {
   handleSubmit: (formData: SignupInterface) => void;
 }
+const initialFormData: SignupInterface = {
+  username: "",
+  password: "",
+  hobbies: "",
+  interests: "",
+  location: null,
+  radius: null
+};
 
 function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
 
-  const initialFormData: SignupInterface = {
-    username: "",
-    password: "",
-    hobbies: "",
-    interests: "",
-    location: null,
-    radius: null
-  };
   const [formData, setFormData] = useState(initialFormData);
 
 
