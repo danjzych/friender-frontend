@@ -1,25 +1,35 @@
-import { useState, useEffect, useContext } from 'react';
-import userContext from '../../contexts/userContext';
-import { UserInterface } from '../../types/interfaces';
-import FrienderAPI from '../../api';
-import MatchCard from './MatchCard';
-import IsLoading from '../common/IsLoading';
+import { MatchInterface } from "../../types/interfaces";
 
-function MatchesList() {
-    const [matches, setMatches] = useState<UserInterface[]>(null)
-    const { user } = useContext(userContext);
+interface MatchesListProps {
+    matches: MatchInterface[];
+    setSelectedMatch: (idx: number) => void;
+    selectedMatch: number;
+}
 
-    useEffect(function getMatches() {
-        async function fetchMatches() {
-            const matches = await FrienderAPI.getMatches(user.username);
-            setMatches(matches);
-          }
-          fetchMatches();
-    }, [])
+function MatchesList({ matches, setSelectedMatch, selectedMatch }: MatchesListProps) {
 
-    return(<div>
-        <h2>Matches:</h2>
-        {matches ? matches.map(m => <MatchCard match={m} key={m.username}/>) : <IsLoading />}
+
+    return (<div className="h-full w-40 border-2 border-t-0 border-neutral-600">
+        <div>
+            <h3 className="text-xl py-4 text-center border-b-2 border-neutral-600 shadow-xl bg-neutral-200 font-semibold">
+                Matches
+            </h3>
+        </div>
+        <div className="overflow-y-scroll w-full">
+                {matches.map((m, idx) =>
+                    <div
+                    onClick={() => setSelectedMatch(idx)}
+                    className={`flex justify-between items-center w-100 p-2 pr-4 border-b-2 border-base-400 text-center text-sm cursor-pointer
+                    ${selectedMatch === idx ? "bg-blue-500 text-base-100" : "font-light"}
+                    hover:opacity-70
+                    active:opacity-60`}
+                    key={idx}
+                    >
+                        <img src={m.image_urls[0]} className="w-6 h-8 rounded-full border-2 border-primary overflow-clip" />
+                        <div>{m.username}</div>
+                    </div>)}
+        </div>
     </div>)
 }
+
 export default MatchesList

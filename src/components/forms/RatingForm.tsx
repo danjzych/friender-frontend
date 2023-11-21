@@ -3,12 +3,8 @@ import thumbsDown from "../../images/icons/thumbs-down.svg";
 
 function RatingForm({rater, rated, handleRating}) {
 
-  function handleClick(evt): void {
-    const rating = evt.target.dataset.isliked
-    // const isLiked = Boolean(rating);
-    // console.log(evt.target.dataset.isliked);
-    // console.log(rating)
-    // console.log(isLiked)
+  function handleClick(evt:React.MouseEvent<HTMLElement>): void {
+    const rating = evt.currentTarget.dataset.isliked;
     handleRating(rater, rated, rating);
   }
 
