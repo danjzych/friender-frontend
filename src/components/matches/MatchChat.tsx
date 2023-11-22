@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import userContext from "../../contexts/userContext";
 import IsLoading from "../common/IsLoading";
+import Chat from "./Chat";
 import FrienderAPI from "../../api";
 import { MatchInterface } from "../../types/interfaces";
 
@@ -28,7 +29,7 @@ function MatchChat ({ match }: MatchChatProps ) {
   }
 
   function handleChange(evt): void{
-    const { name, value } = evt.target;
+    const { value } = evt.target;
     setMessageText(value);
   }
 
@@ -39,31 +40,26 @@ function MatchChat ({ match }: MatchChatProps ) {
     fetchMessages();
   }
 
-  const messageField = <div className='MessageLog-field'>
-    {messages.map(msg =>
-    <p className="MessageLog-message" key={msg.id}>
-      <span className='MessageLog-from'>
-        {msg.sender}:
-      </span>
-        {msg.message}
-    </p>)}
+  const messageField = <div className="flex flex-col gap-3 overflow-y-scroll pt-8 px-4">
+    {messages.map(msg => <Chat sender={msg.sender} message={msg.message} key={msg.id} />)}
   </div>
 
 
-  return (<>
-      <div className='row-span-4'>
+  return (<div className="col-span-3">
+      <div className="h-[calc(100vh_-_8rem)]">
       {isLoaded ? messageField : <IsLoading />}
       </div>
-      <form onSubmit={submitMessage} className="row-span-1 flex justify-between items-center px-2 border-t-2 border-neutral-100">
+      <form onSubmit={submitMessage} className="h-16 flex justify-between items-center px-8 border-t-2 border-neutral-100">
         <textarea
           name="message"
           value={messageText}
-          placeholder="Type message"
+          placeholder="Say something fun!"
           onChange={handleChange}
+          className="w-5/6 h-full border-none overflow-y-scroll resize-none placeholder:text-base-400 focus:outline-none active:text-base-600"
         />
         <button className="btn btn-secondary" type="submit">Send</button>
       </form>
-    </>
+    </div>
   )
 }
 
