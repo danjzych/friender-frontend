@@ -1,19 +1,23 @@
-import MatchCard from "./MatchCard"
+import MatchChat from "./MatchChat";
+import MatchCard from "./MatchCard";
 
 function FocusedMatch({ match }) {
 
     return <>
-        <MatchCard match={match} />
-        <div className="col-span-3  grid grid-rows-5">
-            <div className="row-span-1 border-b-2 border-base-400">
+        <div className="col-span-3 grid grid-rows-6">
+            <div className="row-span-1 border-b-2 border-base-300">
                 {match.username}
             </div>
-        </div>
-        </>
+            <MatchChat match={match} />
+            {/* <div className="row-span-4">
 
-    return <div>
+            </div>
+            <div className="row-span-1 border-t-2 border-neutral-100">
+
+            </div> */}
+        </div>
         <MatchCard match={match} />
-    </div>
+        </>
 }
 
 export default FocusedMatch

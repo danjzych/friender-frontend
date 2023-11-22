@@ -9,7 +9,6 @@ import Profile from "../components/Profile";
 import ProfileForm from "../components/forms/ProfileForm";
 import ProfileImageform from "../components/forms/ProfileImageForm";
 import MatchesContainer from "../components/matches/MatchesContainer";
-import MessageLog from "../components/matches/MessageLog";
 import { MatchInterface } from "../types/interfaces";
 
 
@@ -36,7 +35,7 @@ function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
           <Route path="/people" element={<FriendList nearbyUsers={nearbyUsers} isUsersLoaded={isUsersLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesContainer />} />
-          <Route path='/messages/:matchName' element={<MessageLog />} />
+          {/* <Route path='/messages/:matchName' element={<MessageLog />} /> */}
         </>
         :
         <>

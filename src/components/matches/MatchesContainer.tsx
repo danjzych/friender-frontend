@@ -4,7 +4,6 @@ import { MatchInterface } from '../../types/interfaces';
 import MatchesList from './MatchesList';
 import FocusedMatch from './FocusedMatch';
 import FrienderAPI from '../../api';
-import MatchCard from './MatchCard';
 
 function MatchesContainer() {
     const [matches, setMatches] = useState<MatchInterface[]>(null);
