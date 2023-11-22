@@ -40,7 +40,7 @@ function MatchChat ({ match }: MatchChatProps ) {
     fetchMessages();
   }
 
-  const messageField = <div className="flex flex-col gap-3 overflow-y-scroll pt-8 px-4">
+  const messageField = <div className="flex flex-col h-full gap-3 overflow-y-scroll py-8 px-4">
     {messages.map(msg => <Chat sender={msg.sender} message={msg.message} key={msg.id} />)}
   </div>
 
