@@ -1,19 +1,29 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "../contexts/userContext";
-import FriendCard from "./friends/FriendCard";
+import editIcon from "../images/icons/edit.svg"
 
 
 function Profile() {
     const { user } = useContext(userContext);
 
-    return (
-        <div className="position absolute top-16 w-full flex justify-center">
-            {/* <FriendCard friend={user} /> */}
-            <Link to="/profile/edit" ><button >Edit Profile</button></Link>
-            {/* <Link to='/profile/add-image'><button>Add Image</button></Link> */}
+    return <div className="absolute flex justify-center items-center h-screen w-screen bg-inherit">
+        <div className="card w-2/5 2xl:w-3/5 2xl:max-w-4xl bg-base-100 border-0 border-base-200 rounded-xl shadow-2xl">
+            <figure className="position relative py-4 bg-primary border-b border-base-200 shadow-sm">
+                <img src={user.image_urls[0]} className="rounded-xl max-h-72 2xl:max-h-96" loading="lazy" />
+                <Link to="/profile/edit" className="position absolute top-0 right-0 p-2 hover:opacity-50 active:scale-90">
+                    <img src={editIcon} className="w-6 h-6 fill-white" />
+                </Link>
+            </figure>
+            <div className="card-body text-center">
+                <div className="flex justify-between items-center">
+                <h2 className="card-title">{user.username}</h2>
+                </div>
+                <p>Hobbies are: {user.hobbies}</p>
+                <p>Interests include: {user.interests}</p>
+            </div>
         </div>
-    )
+        </div>
 }
 
 

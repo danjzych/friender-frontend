@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import userContext from "./contexts/userContext";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import FrienderAPI from './api';
 import { UserInterface, SignupInterface, LoginInterface, UpdateInterface, MatchInterface } from './types/interfaces';
