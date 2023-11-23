@@ -51,12 +51,12 @@ function App() {
       localStorage.removeItem("token");
   }
 
-  async function signup(formData: SignupInterface){
+  async function signup(formData: SignupInterface) {
     const token = await FrienderAPI.signupUser(formData);
     updateToken(token);
   }
 
-  async function login(formData: LoginInterface){
+  async function login(formData: LoginInterface) {
     const token = await FrienderAPI.loginUser(formData);
     updateToken(token);
   }
@@ -67,7 +67,7 @@ function App() {
     updateToken(null);
   }
 
-  async function update(formData: UpdateInterface){
+  async function update(formData: UpdateInterface) {
     const newUser = await FrienderAPI.updateUser(formData, user.username);
     setUser(newUser);
   }

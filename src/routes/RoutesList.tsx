@@ -35,7 +35,6 @@ function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers
           <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
           <Route path="/people" element={<FriendList nearbyUsers={nearbyUsers} isUsersLoaded={isUsersLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesContainer />} />
-          {/* <Route path='/messages/:matchName' element={<MessageLog />} /> */}
         </>
         :
         <>
