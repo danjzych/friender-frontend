@@ -4,9 +4,9 @@ import IsLoading from "../common/IsLoading";
 
 function FriendList({ nearbyUsers, isUsersLoaded, rateUser }) {
 
-  if (nearbyUsers !== null && nearbyUsers?.length === 0){
+  if (nearbyUsers?.length === 0 && isUsersLoaded){
     return (
-      <div className="absolute flex flex-col justify-center items-center h-screen w-screen bg-inherit">
+      <div className="absolute flex flex-col justify-center items-center h-screen w-screen bg-inherit text-center">
         <p className="text-lg font-semibold">
             Looks like there's no friends to explore right now.
         </p>

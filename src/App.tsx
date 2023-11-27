@@ -36,6 +36,7 @@ function App() {
 
   useEffect(() => {
     async function getNearbyUsers() {
+      setIsUsersLoaded(false);
       const eligibleUsers = await FrienderAPI.getNearMe(user.username);
       setNearbyUsers(eligibleUsers);
       setIsUsersLoaded(true);

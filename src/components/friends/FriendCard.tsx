@@ -22,7 +22,7 @@ function FriendCard({ friend, rateUser }: FriendCardProps){
             <div className="card-body text-center">
                 <div className="flex justify-between items-center">
                 <h2 className="card-title">{username}</h2>
-                {distance && <small className="font-extralight italic text-base-300">{distance} miles away</small>}
+                {distance !==undefined && <small className="font-extralight italic text-base-300">{distance} miles away</small>}
                 </div>
                 <p>Hobbies are: {hobbies}</p>
                 <p>Interests include: {interests}</p>
