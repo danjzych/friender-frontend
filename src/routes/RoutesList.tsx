@@ -7,7 +7,6 @@ import SignupForm from "../components/forms/SignupForm";
 import LoginForm from "../components/forms/LoginForm";
 import Profile from "../components/Profile";
 import ProfileForm from "../components/forms/ProfileForm";
-import ProfileImageform from "../components/forms/ProfileImageForm";
 import MatchesContainer from "../components/matches/MatchesContainer";
 import { MatchInterface } from "../types/interfaces";
 
@@ -31,8 +30,7 @@ function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers
         <>
           <Route path="/" element={<Homepage />} />
           <Route path="/profile" element={<Profile /> } />
-          <Route path="/profile/edit" element={<ProfileForm user={user} handleSubmit={update} />} />
-          <Route path='/profile/add-image' element={<ProfileImageform handleSubmit={addImage}/>} />
+          <Route path="/profile/edit" element={<ProfileForm user={user} update={update} addImage={addImage} />} />
           <Route path="/people" element={<FriendList nearbyUsers={nearbyUsers} isUsersLoaded={isUsersLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesContainer />} />
         </>
