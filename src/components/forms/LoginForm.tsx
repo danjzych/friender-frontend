@@ -39,7 +39,9 @@ function LoginForm({ handleSubmit }: LoginFormProps) {
           <input type="text" onChange={handleChange}
             name="username"
             value={formData.username}
-            placeholder="user@email.com"
+            placeholder="username"
+            maxLength={15}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -49,6 +51,9 @@ function LoginForm({ handleSubmit }: LoginFormProps) {
             name="password"
             value={formData.password}
             placeholder="********"
+            minLength={5}
+            maxLength={50}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>

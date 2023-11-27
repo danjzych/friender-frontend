@@ -47,6 +47,8 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <input type="text" onChange={handleChange}
             name="username"
             value={formData.username}
+            maxLength={15}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -58,6 +60,9 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <input type="password" onChange={handleChange}
             name="password"
             value={formData.password}
+            minLength={5}
+            maxLength={50}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -69,6 +74,8 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <textarea onChange={handleChange}
             name="hobbies"
             value={formData.hobbies}
+            minLength={10}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 resize-none active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -80,6 +87,8 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <textarea onChange={handleChange}
             name="interests"
             value={formData.interests}
+            minLength={10}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 resize-none active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -91,6 +100,9 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <input type="number" onChange={handleChange}
             name="location"
             value={formData.location}
+            min={10000}
+            max={99999}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
@@ -102,6 +114,9 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           <input type="number" onChange={handleChange}
             name="radius"
             value={formData.radius}
+            min={1}
+            max={100}
+            required
             className="border-2 border-base-300 rounded-md bg-gray-50 w-11/12 mx-4 px-1 py-0.5 font-extralight text-gray-600 active:border-blue-500 placeholder:italic placeholder:text-gray-500"
           />
         </div>
