@@ -73,9 +73,9 @@ function App() {
     setUser(newUser);
   }
 
-  async function addImage(formData) {
-    const newUser = await FrienderAPI.addProfileImage(formData, user.username);
-    setUser(newUser)
+  async function addImage(formData, username:string = user.username) {
+    const newUser = await FrienderAPI.addProfileImage(formData, username);
+    setUser(newUser);
   }
 
   async function rateUser(rater:string, rated:string, isLiked:string): Promise<void>{

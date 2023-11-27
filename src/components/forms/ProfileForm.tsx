@@ -5,7 +5,7 @@ import { UserInterface, UpdateInterface } from "../../types/interfaces";
 interface ProfileFormProps {
   user: UserInterface;
   update: (formData: UpdateInterface) => void;
-  addImage: ({ }) => void;
+  addImage: (formData: any, username?: string) => void;
 }
 
 function ProfileForm({ user, update, addImage }: ProfileFormProps) {
@@ -35,7 +35,7 @@ function ProfileForm({ user, update, addImage }: ProfileFormProps) {
   function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     update(formData);
-    if (file !==undefined) {
+    if (file !== undefined) {
       const imageForm = new FormData();
         imageForm.append('image', file)
         addImage(imageForm);

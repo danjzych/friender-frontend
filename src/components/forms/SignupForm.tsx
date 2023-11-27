@@ -3,8 +3,10 @@ import { SignupInterface } from "../../types/interfaces";
 
 
 interface SignUpFormPropsInterface {
-  handleSubmit: (formData: SignupInterface) => void;
+  signup: (formData: SignupInterface) => void;
+  addImage: (formData: any, username?: string) => void;
 }
+
 const initialFormData: SignupInterface = {
   username: "",
   password: "",
@@ -14,9 +16,9 @@ const initialFormData: SignupInterface = {
   radius: null
 };
 
-function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
-
+function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
   const [formData, setFormData] = useState(initialFormData);
+  const [file, setFile] = useState()
 
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -26,14 +28,24 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
     ));
   }
 
-  function submitForm(evt: React.FormEvent) {
+  function handleFileChange(evt) {
+    setFile(evt.target.files[0])
+}
+
+  async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
-    handleSubmit(formData);
+    await signup(formData);
+
+    if (file !==undefined) {
+      const imageForm = new FormData();
+        imageForm.append('image', file)
+        addImage(imageForm, formData.username);
+    }
   }
 
   return (
     <div className="position absolute top-16 w-full flex justify-center">
-      <form className="flex flex-col justify-between items-center mx-auto mt-12 py-4 w-96 min-h-full border-0 border-base-200 rounded-xl shadow-2xl" onSubmit={submitForm}>
+      <form className="flex flex-col justify-between items-center mx-auto mt-12 py-4 w-96 min-h-full border-0 border-base-200 rounded-xl shadow-2xl" onSubmit={handleSubmit}>
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold text-secondary">Signup</h2>
         <h3 className="text-md font-light text-accent italic">Start making friends!</h3>
@@ -121,6 +133,20 @@ function SignupForm({ handleSubmit }: SignUpFormPropsInterface) {
           />
         </div>
       </div>
+      <div className="w-100 mb-3">
+          <div className="w-100 px-4 mb-0.5 flex justify-between align-middle">
+            <label htmlFor="profile-pic" className="font-semilight">Profile Pic:</label>
+            <small className="font-extralight italic text-base-400 leading-6">New haircut? Show it off.</small>
+          </div>
+          <div className="w-11/12 mx-4 px-1 py-0.5 font-extralight">
+            <input type='file' onChange={handleFileChange}
+              name='image'
+              id="profile-pic"
+              accept=".jpg,.png,.jpeg"
+              className=" file-input file-input-bordered file-input-accent w-full font-extralight text-gray-600"
+              />
+          </div>
+        </div>
         <button type="submit" className="btn btn-primary">Sign Up</button>
       </form>
 

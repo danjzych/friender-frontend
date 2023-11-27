@@ -15,7 +15,7 @@ interface RoutesListInterface {
   signup: ({ }) => void;
   login: ({ }) => void;
   update: ({ }) => void;
-  addImage: ({ })=> void;
+  addImage: (formData: any, username?: string) => void;
   isUsersLoaded: Boolean;
   nearbyUsers: MatchInterface[];
   rateUser: (rater:string, rated:string, isLiked:string)=> Promise<void>;
@@ -37,7 +37,7 @@ function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers
         :
         <>
           <Route path="/" element={<Homepage />} />
-          <Route path="/signup" element={<SignupForm handleSubmit={signup} />} />
+          <Route path="/signup" element={<SignupForm signup={signup} addImage={addImage} />} />
           <Route path="/login" element={<LoginForm handleSubmit={login} />} />
         </>
       }
