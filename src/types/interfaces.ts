@@ -31,10 +31,24 @@ interface UpdateInterface {
   radius: number;
 }
 
+interface RatingBodyInterface {
+  "user_who_rated": string,
+  "user_being_rated": string,
+  "is_liked": string
+}
+
+interface MessageBodyInterface {
+  "sender": string,
+  "receiver": string,
+  "message": string
+}
+
 export type {
   UserInterface,
   MatchInterface,
   SignupInterface,
   LoginInterface,
-  UpdateInterface
+  UpdateInterface,
+  RatingBodyInterface,
+  MessageBodyInterface
 }

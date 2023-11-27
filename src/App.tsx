@@ -79,7 +79,12 @@ function App() {
   }
 
   async function rateUser(rater:string, rated:string, isLiked:string): Promise<void>{
-    await FrienderAPI.rateUser(rater, rated, isLiked);
+    const body = {
+      "user_who_rated": rater,
+      "user_being_rated": rated,
+      "is_liked": isLiked
+    }
+    await FrienderAPI.rateUser(body);
     setNearbyUsers(prevUsers => {
       const newUsers = prevUsers.filter(user => user.username !== rated);
       return newUsers;

@@ -35,7 +35,12 @@ function MatchChat ({ match }: MatchChatProps ) {
 
   async function submitMessage(evt: React.FormEvent): Promise<void>{
     evt.preventDefault();
-    await FrienderAPI.addMessage(user.username, match.username, messageText);
+    const body = {
+      sender: user.username,
+      receiver: match.username,
+      message: messageText
+    }
+    await FrienderAPI.addMessage(body);
     setMessageText("");
     fetchMessages();
   }

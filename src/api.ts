@@ -1,4 +1,5 @@
-import { UserInterface, SignupInterface, LoginInterface, UpdateInterface, MatchInterface } from "./types/interfaces";
+import { UserInterface, SignupInterface, LoginInterface,
+         UpdateInterface, MatchInterface, RatingBodyInterface, MessageBodyInterface } from "./types/interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
@@ -9,140 +10,89 @@ class FrienderAPI {
 
   static token = "";
 
-  static async getUserInfo(username: string): Promise<UserInterface> {
-    const response = await fetch(`${BASE_URL}/users/${username}`, {
-      method: 'GET',
-      headers: { 'token': this.token }
-    });
+  /** Generic method for making API requests and catching/throwing errors */
+  static async request(endpoint: string, data = {}, method = "GET") {
+    const url = new URL(`${BASE_URL}/${endpoint}`);
+    const headers = {
+      authorization: `Bearer ${this.token}`,
+      "content-type": "application/json",
+    };
 
-    const data = await response.json();
+    url.search = method === "GET" ? new URLSearchParams(data).toString() : "";
 
-    if (data.error) {
-      throw new Error(data.error);
+    const body = method !== "GET" ? JSON.stringify(data) : undefined;
+
+    const resp = await fetch(url, { method, body, headers });
+
+    if (!resp.ok) {
+      console.error("API Error:", resp.statusText, resp.status);
+      const { error } = await resp.json();
+      throw Array.isArray(error) ? error : [error];
     }
 
-    return data;
+    return await resp.json();
   }
 
+  /** Gets all matches for a given user */
   static async getMatches(username: string): Promise<MatchInterface[]>{
-    const response = await fetch(`${BASE_URL}/users/${username}/matches`, {
-      method: 'GET',
-      headers: {'token': this.token}
-    })
-
-    const data = await response.json()
-    if (data.error) throw new Error(data.error);
-
-    return data.matches;
+    const response = await this.request(`/users/${username}/matches`);
+    return response.matches;
   }
 
+  /** Gets nearby potential matches for a given user */
   static async getNearMe(username: string): Promise<MatchInterface[]>{
-    const response = await fetch(`${BASE_URL}/users/${username}/nearme`, {
-      method: 'GET',
-      headers: {'token': this.token }
-    })
-
-    const data = await response.json();
-    if (data.error) throw new Error(data.error);
-
-    return data.eligible;
+    const response = await this.request(`/users/${username}/nearme`);
+    return response.eligible;
   }
 
+  /** Signup a new user */
   static async signupUser(formData: SignupInterface): Promise<string> {
-    const response = await fetch(`${BASE_URL}/signup`, {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-    const data = await response.json();
-
-    if (data.token) return data.token;
-
-    throw new Error(data.error);
+    const response = await this.request(`/signup`, formData, "POST");
+    return response;
   }
 
+  /** Login an existing user */
   static async loginUser(formData: LoginInterface): Promise<string> {
-    const response = await fetch(`${BASE_URL}/login`, {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-    const data = await response.json();
-
-    if (data.token) return data.token;
-
-    throw new Error(data.error);
+    const response = await this.request(`/login`, formData, "POST");
+    return response;
   }
 
+  /** get user profile for a given user */
+  static async getUserInfo(username: string): Promise<UserInterface> {
+    const response = await this.request(`/users/${username}`);
+    return response;
+  }
+
+  /** Update user profile for a given user */
   static async updateUser(formData: UpdateInterface, username: string): Promise<UserInterface> {
-    const response = await fetch(`${BASE_URL}/users/${username}`, {
-      method: 'PATCH',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json', 'token': this.token }
-    });
-
-    const data = await response.json();
-
-    if (data.error) {
-
-      throw new Error(data.error);
-    }
-
-    return data;
+    const response = await this.request(`/users/${username}`, formData, "PATCH");
+    return response;
   }
 
+  /** Add a profile photo for a given user */
   static async addProfileImage(formData, username: string): Promise<UserInterface> {
-    const response = await fetch(`${BASE_URL}/users/${username}/image`, {
-      method: 'POST',
-      body: formData,
-      headers: {'token': this.token}
-    })
-
-    const data = await response.json()
-
-    if(data.error) {
-      throw new Error(data.error)
-    }
-
-    return data;
+    const response = await this.request(`/users/${username}/image`, formData, "POST");
+    return response;
   };
 
-  static async rateUser(rater:string, rated: string, isLiked:string): Promise<void> {
-    const response = await fetch(`${BASE_URL}/rating`, {
-      method: 'POST',
-      body: JSON.stringify({
-        "user_who_rated": rater,
-        "user_being_rated": rated,
-        "is_liked": isLiked
-      }),
-      headers: {'Content-Type': 'application/json', 'token': this.token}
-    })
+  /** Rate a potential friend */
+  static async rateUser(body: RatingBodyInterface): Promise<void> {
+    const response = await this.request(`/rating`, body, "POST");
+    return response;
   }
 
+  /** Get all messages in a chat between one user and another */
   static async getMessages(username: string, otherUsername: string) {
-    const response = await fetch(`${BASE_URL}/users/${username}/messages/${otherUsername}`, {
-      method: 'GET',
-      headers: {'token': this.token}
-    })
-
-    const data= await response.json()
-
-    return data.messages;
+    const response = await this.request(`/users/${username}/messages/${otherUsername}`);
+    return response.messages;
   }
 
-  static async addMessage(sender:string , receiver:string , message: string): Promise<void> {
-    const response = await fetch(`${BASE_URL}/users/${sender}/message`, {
-      method: 'POST',
-      body: JSON.stringify({
-        sender,
-        receiver,
-        message
-      }),
-      headers: {'Content-Type': 'application/json', 'token': this.token}
-    })
+  /** Send a message from a user to one of their matches */
+  static async addMessage(body: MessageBodyInterface): Promise<void> {
+    const response = await this.request(`/users/${body.sender}/message`, body, "POST");
+    return response;
   }
+
 }
 
 export default FrienderAPI;
