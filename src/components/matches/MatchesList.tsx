@@ -25,7 +25,7 @@ function MatchesList({ matches, setSelectedMatch, selectedMatch }: MatchesListPr
                     active:opacity-60`}
                     key={idx}
                     >
-                        <img src={m.image_urls[0]} className="w-8 h-12 rounded-full border-2 border-primary overflow-clip" />
+                        <img src={m.image_urls[0] || './default-profile-pic.png'} className="w-8 h-12 rounded-full border-2 border-primary overflow-clip" />
                         <div className="flex flex-col">
                             <div className="text-md">{m.username}</div>
                             <div className="text-xs">Say hi! 👋</div>
