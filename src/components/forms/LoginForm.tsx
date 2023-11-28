@@ -5,6 +5,7 @@ import { LoginInterface } from "../../types/interfaces";
 
 interface LoginFormProps {
   login: (formData: LoginInterface) => void;
+  loginDemoUser: ({ }) => void;
 }
 
 const initialFormData: LoginInterface = {
@@ -12,7 +13,7 @@ const initialFormData: LoginInterface = {
   password: ""
 };
 
-function LoginForm({ login }: LoginFormProps) {
+function LoginForm({ login, loginDemoUser }: LoginFormProps) {
   const [ formData, setFormData ] = useState(initialFormData);
   const [ alerts, setAlerts ] = useState([]);
 
@@ -42,6 +43,7 @@ function LoginForm({ login }: LoginFormProps) {
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold text-secondary">Login</h2>
         <h3 className="text-md font-light text-accent italic">Welcome back!</h3>
+        <a className="link link-neutral text-sm" onClick={loginDemoUser}>Login with demo account</a>
       </div>
       <div className="w-full">
         <div className="w-100 mb-3">

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Alert from "../common/Alert";
-import { SignupInterface } from "../../types/interfaces";
+import { SignupInterface, LoginInterface } from "../../types/interfaces";
 
 
 interface SignUpFormPropsInterface {
   signup: (formData: SignupInterface) => void;
   addImage: (formData: any, username?: string) => void;
+  loginDemoUser: ({ }) => void;
 }
 
 const initialFormData: SignupInterface = {
@@ -17,7 +18,7 @@ const initialFormData: SignupInterface = {
   radius: null
 };
 
-function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
+function SignupForm({ signup, addImage, loginDemoUser }: SignUpFormPropsInterface) {
   const [formData, setFormData] = useState(initialFormData);
   const [file, setFile] = useState();
   const [ alerts, setAlerts ] = useState([]);
@@ -55,6 +56,7 @@ function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold text-secondary">Signup</h2>
         <h3 className="text-md font-light text-accent italic">Start making friends!</h3>
+        <a className="link link-neutral text-sm" onClick={loginDemoUser}>Login with demo account</a>
       </div>
       <div className="w-full my-6">
         <div className="w-100 mb-3">

@@ -3,7 +3,11 @@ import { useContext } from "react";
 import userContext from "../../contexts/userContext";
 import silhouettes from "../../images/silhouettes.jpg";
 
-function Homepage() {
+interface HomepageProps {
+    loginDemoUser: ({ }) => void;
+}
+
+function Homepage({ loginDemoUser }: HomepageProps) {
     const { user } = useContext(userContext);
 
     const loggedOutInner = <>
@@ -57,7 +61,12 @@ function Homepage() {
                 </div>
     </>
 
+    const demoUserButton = <div className="position absolute top-16 w-screen flex justify-center py-12">
+            <button className="btn btn-wide btn-neutral shadow-2xl" onClick={loginDemoUser}>Login with demo account</button>
+        </div>
+
     return (<div className="hero min-h-screen" style={{backgroundImage: `url(${silhouettes})`}}>
+        {user === null && demoUserButton}
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
             <div className="max-w-md">

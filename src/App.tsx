@@ -62,6 +62,10 @@ function App() {
     updateToken(response.token);
   }
 
+  function loginDemoUser() {
+    login({username: "test_user1", password: "password"})
+  }
+
   async function logout(){
     setUser(null);
     setNearbyUsers(null);
@@ -99,6 +103,7 @@ function App() {
             <Navbar logout={logout} />
             {isLoaded ? <RoutesList signup={signup}
                                     login={login}
+                                    loginDemoUser={loginDemoUser}
                                     update={update}
                                     addImage={addImage}
                                     isUsersLoaded={isUsersLoaded}
