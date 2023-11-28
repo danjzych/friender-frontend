@@ -8,6 +8,17 @@ interface FriendCardProps {
     rateUser?: (rater:string, rated:string, isLiked:string) => Promise<void>;
 }
 
+/**
+ * Card component for individual friend to be rated.
+ *
+ * Props: friend, rateUser
+ *
+ * State: None
+ *
+ * Context: userContext
+ *
+ * FriendList -> FriendCard -> RatingForm
+ */
 function FriendCard({ friend, rateUser }: FriendCardProps){
     const { username, hobbies, interests, image_urls, distance } = friend;
     const { user } = useContext(userContext)

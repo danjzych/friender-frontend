@@ -7,6 +7,17 @@ interface HomepageProps {
     loginDemoUser: ({ }) => void;
 }
 
+/**
+ * Homepage for Friender. Has seperate content for when user is logged in or out.
+ *
+ * Props: loginDemoUser
+ *
+ * State: None
+ *
+ * Context: userContext
+ *
+ * RoutesList -> Homepage -> None
+ */
 function Homepage({ loginDemoUser }: HomepageProps) {
     const { user } = useContext(userContext);
 

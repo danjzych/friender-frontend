@@ -1,8 +1,26 @@
 import { Link } from "react-router-dom";
 import FriendCard from "./FriendCard";
 import IsLoading from "../common/IsLoading";
+import { MatchInterface } from "../../types/interfaces";
 
-function FriendList({ nearbyUsers, isUsersLoaded, rateUser }) {
+interface FriendListProps {
+  nearbyUsers: MatchInterface[],
+  isUsersLoaded: Boolean,
+  rateUser: (rater: string, rated: string, isLiked: string) => Promise<void>
+}
+
+/**
+ * Component at top of Friends feature, displays a single potential friend to be rated.
+ *
+ * Props: nearbyUsers, usUsersLoaded, rateUser
+ *
+ * State: None
+ *
+ * Context: None
+ *
+ * RoutesList -> FriendList -> FriendCard
+ */
+function FriendList({ nearbyUsers, isUsersLoaded, rateUser }: FriendListProps) {
 
   if (nearbyUsers?.length === 0 && isUsersLoaded){
     return (

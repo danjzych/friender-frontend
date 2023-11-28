@@ -2,6 +2,17 @@ import { NavLink, Link } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "../../contexts/userContext";
 
+/**
+ * Navbar for Friender. Always present.
+ *
+ * Props: logout
+ *
+ * State: None
+ *
+ * Context: user
+ *
+ * App -> Navbar -> None
+ */
 function Navbar({ logout }) {
     const { user } = useContext(userContext);
 

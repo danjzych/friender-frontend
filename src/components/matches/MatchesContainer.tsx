@@ -6,13 +6,26 @@ import FocusedMatch from './FocusedMatch';
 import FrienderAPI from '../../api';
 import NoMatches from './NoMatches';
 
+/**
+ * Container component at top of "Matches" feature. Contains inner navbar for matches,
+ * chat field for matches, and small cards presenting details about selected matches.
+ *
+ * Props: None
+ *
+ * State: matches, selectedMatch, matchesLoaded
+ *
+ * Context: User
+ *
+ * RoutesList -> MatchesContainer -> MatchesList, FocusedMatch, NoMatches
+ */
 function MatchesContainer() {
     const [matches, setMatches] = useState<MatchInterface[]>(null);
-    const [ selectedMatch, setSelectedMatch ] = useState(null);
+    const [selectedMatch, setSelectedMatch] = useState(null);
     const [matchesLoad, setMatchesLoaded] = useState(false);
 
     const { user } = useContext(userContext);
 
+    /** Get matches for logged in user on component mount */
     useEffect(function getMatches() {
         async function fetchMatches() {
             const matches = await FrienderAPI.getMatches(user.username);

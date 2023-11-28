@@ -1,3 +1,14 @@
+/**
+ * Reusable component for errors in Friender.
+ *
+ * Props: alert
+ *
+ * State: None
+ *
+ * Context: None
+ *
+ * Component with error -> Alert
+ */
 function Alert({ alert }) {
 
     return (<div role="alert" className="alert alert-error">

@@ -1,15 +1,28 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import userContext from "../../contexts/userContext";
 import Alert from "../common/Alert";
 import { UserInterface, UpdateInterface } from "../../types/interfaces";
 
 interface ProfileFormProps {
-  user: UserInterface;
   update: (formData: UpdateInterface) => void;
   addImage: (formData: any, username?: string) => void;
 }
 
-function ProfileForm({ user, update, addImage }: ProfileFormProps) {
+/**
+ * Form for editing user profile Friender.
+ *
+ * props: update, addImage
+ *
+ * State: formData, file, alerts
+ *
+ * Context: userContext
+ *
+ * RoutesList -> ProfileForm -> None
+ */
+function ProfileForm({ update, addImage }: ProfileFormProps) {
+  const { user } = useContext(userContext);
+
   const initialFormData = {
 
     hobbies: user.hobbies,
@@ -24,15 +37,18 @@ function ProfileForm({ user, update, addImage }: ProfileFormProps) {
 
   const navigate = useNavigate();
 
+  /** Form control for input changes */
   function handleChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void{
     const { name, value } = evt.target;
     setFormData(prevForm => ({ ...prevForm, [name]: value }));
   }
 
+  /** Form control for file changes */
   function handleFileChange(evt) {
       setFile(evt.target.files[0])
   }
 
+  /** Submit profile edits */
   async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     try {

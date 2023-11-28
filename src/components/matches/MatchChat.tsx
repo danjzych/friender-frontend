@@ -9,7 +9,15 @@ interface MatchChatProps {
   match: MatchInterface;
 }
 
-
+/**
+ * Chat field for chatting with selected match.
+ *
+ * Props: match
+ *
+ * State: messageText, messages, isLoaded
+ *
+ * FocusedMatch -> MatchChat -> Chat
+ */
 function MatchChat ({ match }: MatchChatProps ) {
   const [messageText, setMessageText] = useState("");
   const [messages, setMessages] = useState([])
@@ -17,22 +25,25 @@ function MatchChat ({ match }: MatchChatProps ) {
 
   const { user } = useContext(userContext);
 
+  /** Get messages on mount and if selected match changes */
   useEffect(function getMessages() {
     fetchMessages()
   }, [match])
 
-
+  /** Get messages from API */
   async function fetchMessages(): Promise<void>{
     const messages = await FrienderAPI.getMessages(user.username, match.username);
     setMessages(messages);
     setIsLoaded(true);
   }
 
-  function handleChange(evt): void{
+  /** Form control function for message input field */
+  function handleChange(evt: React.ChangeEvent<HTMLTextAreaElement>): void{
     const { value } = evt.target;
     setMessageText(value);
   }
 
+  /** Sends message to user */
   async function submitMessage(evt: React.FormEvent): Promise<void>{
     evt.preventDefault();
 

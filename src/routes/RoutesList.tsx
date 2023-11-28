@@ -30,7 +30,7 @@ function RoutesList({signup, login, loginDemoUser, update, addImage, isUsersLoad
       {user ?
         <>
           <Route path="/profile" element={<Profile /> } />
-          <Route path="/profile/edit" element={<ProfileForm user={user} update={update} addImage={addImage} />} />
+          <Route path="/profile/edit" element={<ProfileForm update={update} addImage={addImage} />} />
           <Route path="/people" element={<FriendList nearbyUsers={nearbyUsers} isUsersLoaded={isUsersLoaded} rateUser={rateUser} />} />
           <Route path='/matches' element={<MatchesContainer />} />
         </>

@@ -1,5 +1,6 @@
 import { UserInterface, SignupInterface, LoginInterface,
-         UpdateInterface, MatchInterface, AuthInterface, RatingBodyInterface, MessageBodyInterface } from "./types/interfaces";
+         UpdateInterface, MatchInterface, AuthInterface,
+         RatingBodyInterface, MessageBodyInterface } from "./types/interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 

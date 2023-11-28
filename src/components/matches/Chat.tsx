@@ -6,6 +6,17 @@ interface ChatProps {
     message: string;
 }
 
+/**
+ * Individual chat bubble in matches feature.
+ *
+ * Props: sender, message
+ *
+ * State: None
+ *
+ * Context: user
+ *
+ * MatchChat -> Chat -> None
+ */
 function Chat({ sender, message }: ChatProps) {
     const { user } = useContext(userContext);
 

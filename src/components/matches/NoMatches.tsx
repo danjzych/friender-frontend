@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 
+/**
+ * View for when a user visits Matches section but has no matches.
+ *
+ * MatchContainer -> NoMatches -> None
+ */
 function NoMatches() {
     return (<div className="col-span-4 text-center">
         <p className="pt-36 text-lg font-semibold">

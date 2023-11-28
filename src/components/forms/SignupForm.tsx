@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Alert from "../common/Alert";
-import { SignupInterface, LoginInterface } from "../../types/interfaces";
+import { SignupInterface } from "../../types/interfaces";
 
 
 interface SignUpFormPropsInterface {
@@ -18,12 +18,23 @@ const initialFormData: SignupInterface = {
   radius: null
 };
 
+/**
+ * Form to signup for Friender.
+ *
+ * props: signup, addImage, loginDemoUser
+ *
+ * State: formData, file, alerts
+ *
+ * Context: None
+ *
+ * RoutesList -> SignupForm -> None
+ */
 function SignupForm({ signup, addImage, loginDemoUser }: SignUpFormPropsInterface) {
   const [formData, setFormData] = useState(initialFormData);
   const [file, setFile] = useState();
   const [ alerts, setAlerts ] = useState([]);
 
-
+  /** Form control for input changes */
   function handleChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = evt.target;
     setFormData(prevForm => (
@@ -31,10 +42,12 @@ function SignupForm({ signup, addImage, loginDemoUser }: SignUpFormPropsInterfac
     ));
   }
 
+  /** Form control for file changes changes */
   function handleFileChange(evt) {
     setFile(evt.target.files[0])
-}
+  }
 
+  /** Signup for Friender */
   async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     try {

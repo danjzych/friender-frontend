@@ -4,6 +4,17 @@ interface MatchCardProps {
   match: MatchInterface;
 }
 
+/**
+ * Card component for match details.
+ *
+ * Props: match
+ *
+ * State: none
+ *
+ * Context: None
+ *
+ * FocusedMatch -> MatchCard -> None
+ */
 function MatchCard( { match }: MatchCardProps ) {
   const { username, hobbies, interests, image_urls, location } = match;
 

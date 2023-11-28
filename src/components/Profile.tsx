@@ -3,7 +3,17 @@ import { useContext } from "react";
 import userContext from "../contexts/userContext";
 import editIcon from "../images/icons/edit.svg"
 
-
+/**
+ * Disaplys user profile.
+ *
+ * Props: None
+ *
+ * State: None
+ *
+ * Context: User Context
+ *
+ * App -> RoutesList -> Profile -> None
+ */
 function Profile() {
     const { user } = useContext(userContext);
 

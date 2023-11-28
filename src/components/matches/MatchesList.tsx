@@ -6,8 +6,19 @@ interface MatchesListProps {
     selectedMatch: number;
 }
 
+/**
+ * Side Navbar within Matches section. Presents list of matched users and toggles
+ * currently selected match for FocusedMatch view.
+ *
+ * Props: matches, setSelectedMatch, selectedMatch
+ *
+ * State: None
+ *
+ * Context: None
+ *
+ * MatchContainer -> MatchesList -> None
+ */
 function MatchesList({ matches, setSelectedMatch, selectedMatch }: MatchesListProps) {
-
 
     return (<div className="h-full col-span-1 border-2 border-t-0 border-neutral-300">
         <div>

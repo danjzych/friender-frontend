@@ -13,12 +13,24 @@ const initialFormData: LoginInterface = {
   password: ""
 };
 
+/**
+ * Form to login to Friender.
+ *
+ * props: login, loginDemoUser
+ *
+ * State: formData, alerts
+ *
+ * Context: None
+ *
+ * RoutesList -> loginForm -> None
+ */
 function LoginForm({ login, loginDemoUser }: LoginFormProps) {
   const [ formData, setFormData ] = useState(initialFormData);
   const [ alerts, setAlerts ] = useState([]);
 
   const navigate = useNavigate();
 
+  /** Form control for input changes */
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = evt.target;
     setFormData(prevForm => (
@@ -26,6 +38,7 @@ function LoginForm({ login, loginDemoUser }: LoginFormProps) {
     ));
   }
 
+  /** Submit login form */
   async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     try{
