@@ -18,7 +18,7 @@ function App() {
 
   useEffect(function getUserData(){
     async function fetchUserData(){
-      if (token){
+      if (token) {
         try {
           FrienderAPI.token = token;
           const decoded: {username: string}  = jwt_decode(token);

@@ -38,7 +38,7 @@ function RoutesList({signup, login, update, addImage, isUsersLoaded, nearbyUsers
         <>
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<SignupForm signup={signup} addImage={addImage} />} />
-          <Route path="/login" element={<LoginForm handleSubmit={login} />} />
+          <Route path="/login" element={<LoginForm login={login} />} />
         </>
       }
       <Route path="*" element={<Navigate to="/" />} />
