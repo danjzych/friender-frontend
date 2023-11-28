@@ -53,13 +53,13 @@ function App() {
   }
 
   async function signup(formData: SignupInterface) {
-    const token = await FrienderAPI.signupUser(formData);
-    updateToken(token);
+    const response = await FrienderAPI.signupUser(formData);
+    updateToken(response.token);
   }
 
   async function login(formData: LoginInterface) {
-    const token = await FrienderAPI.loginUser(formData);
-    updateToken(token);
+    const response = await FrienderAPI.loginUser(formData);
+    updateToken(response.token);
   }
 
   async function logout(){
@@ -69,6 +69,7 @@ function App() {
   }
 
   async function update(formData: UpdateInterface) {
+    console.log(user.username)
     const newUser = await FrienderAPI.updateUser(formData, user.username);
     setUser(newUser);
   }

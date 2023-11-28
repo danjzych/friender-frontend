@@ -31,14 +31,25 @@ interface UpdateInterface {
   radius: number;
 }
 
-interface RatingBodyInterface {
+/** Api-Specific Interfaces */
+
+interface FrienderApiResponseInterface {
+  error?: string,
+}
+
+interface AuthInterface extends FrienderApiResponseInterface {
+  token: string
+}
+
+// type ApiUserInterface = FrienderApiResponseInterface | UserInterface;
+
+interface RatingBodyInterface extends FrienderApiResponseInterface {
   "user_who_rated": string,
   "user_being_rated": string,
   "is_liked": string
 }
 
-interface MessageBodyInterface {
-  "sender": string,
+interface MessageBodyInterface extends FrienderApiResponseInterface {
   "receiver": string,
   "message": string
 }
@@ -49,6 +60,8 @@ export type {
   SignupInterface,
   LoginInterface,
   UpdateInterface,
+  AuthInterface,
+  // ApiUserInterface,
   RatingBodyInterface,
   MessageBodyInterface
 }

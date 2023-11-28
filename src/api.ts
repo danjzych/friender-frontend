@@ -1,5 +1,5 @@
 import { UserInterface, SignupInterface, LoginInterface,
-         UpdateInterface, MatchInterface, RatingBodyInterface, MessageBodyInterface } from "./types/interfaces";
+         UpdateInterface, MatchInterface, AuthInterface, RatingBodyInterface, MessageBodyInterface } from "./types/interfaces";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
@@ -14,7 +14,7 @@ class FrienderAPI {
   static async request(endpoint: string, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
-      authorization: `Bearer ${this.token}`,
+      token: `${this.token}`,
       "content-type": "application/json",
     };
 
@@ -46,13 +46,13 @@ class FrienderAPI {
   }
 
   /** Signup a new user */
-  static async signupUser(formData: SignupInterface): Promise<string> {
+  static async signupUser(formData: SignupInterface): Promise<AuthInterface> {
     const response = await this.request(`/signup`, formData, "POST");
     return response;
   }
 
   /** Login an existing user */
-  static async loginUser(formData: LoginInterface): Promise<string> {
+  static async loginUser(formData: LoginInterface): Promise<AuthInterface> {
     const response = await this.request(`/login`, formData, "POST");
     return response;
   }
@@ -88,8 +88,9 @@ class FrienderAPI {
   }
 
   /** Send a message from a user to one of their matches */
-  static async addMessage(body: MessageBodyInterface): Promise<void> {
-    const response = await this.request(`/users/${body.sender}/message`, body, "POST");
+  static async addMessage(body: MessageBodyInterface, username: string): Promise<void> {
+    console.log(username)
+    const response = await this.request(`/users/${username}/message`, body, "POST");
     return response;
   }
 

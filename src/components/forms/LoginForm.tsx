@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Alert from "../common/Alert";
 import { LoginInterface } from "../../types/interfaces";
 
@@ -12,8 +13,10 @@ const initialFormData: LoginInterface = {
 };
 
 function LoginForm({ login }: LoginFormProps) {
-  const [formData, setFormData] = useState(initialFormData);
-  const [ alerts, setAlerts ] = useState([])
+  const [ formData, setFormData ] = useState(initialFormData);
+  const [ alerts, setAlerts ] = useState([]);
+
+  const navigate = useNavigate();
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = evt.target;
@@ -26,6 +29,7 @@ function LoginForm({ login }: LoginFormProps) {
     evt.preventDefault();
     try{
       await login(formData);
+      navigate("/");
     } catch(err) {
       setAlerts(err)
     }

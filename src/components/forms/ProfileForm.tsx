@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Alert from "../common/Alert";
 import { UserInterface, UpdateInterface } from "../../types/interfaces";
 
 interface ProfileFormProps {
@@ -18,10 +19,10 @@ function ProfileForm({ user, update, addImage }: ProfileFormProps) {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [file, setFile] = useState()
+  const [file, setFile] = useState();
+  const [ alerts, setAlerts ] = useState([]);
+
   const navigate = useNavigate();
-
-
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void{
     const { name, value } = evt.target;
@@ -32,15 +33,20 @@ function ProfileForm({ user, update, addImage }: ProfileFormProps) {
       setFile(evt.target.files[0])
   }
 
-  function handleSubmit(evt: React.FormEvent) {
+  async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
-    update(formData);
+    try {
+      await update(formData);
+      navigate("/profile");
+    } catch(err) {
+      setAlerts(err);
+    }
+
     if (file !== undefined) {
       const imageForm = new FormData();
         imageForm.append('image', file)
         addImage(imageForm);
     }
-    navigate("/profile");
   }
 
   return (
@@ -124,6 +130,10 @@ function ProfileForm({ user, update, addImage }: ProfileFormProps) {
           </div>
         </div>
       </div>
+          {alerts.length > 0 &&
+            <div className="px-1 my-4">
+              <Alert alert={alerts} />
+            </div>}
         <button className="btn btn-primary" type="submit">Save Edits</button>
       </form>
     </div>

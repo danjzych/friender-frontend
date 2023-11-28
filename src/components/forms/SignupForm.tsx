@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Alert from "../common/Alert";
 import { SignupInterface } from "../../types/interfaces";
 
 
@@ -18,7 +19,8 @@ const initialFormData: SignupInterface = {
 
 function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
   const [formData, setFormData] = useState(initialFormData);
-  const [file, setFile] = useState()
+  const [file, setFile] = useState();
+  const [ alerts, setAlerts ] = useState([]);
 
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -34,7 +36,11 @@ function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
 
   async function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
-    await signup(formData);
+    try {
+      await signup(formData);
+    } catch(err) {
+      setAlerts(err);
+    }
 
     if (file !==undefined) {
       const imageForm = new FormData();
@@ -45,7 +51,7 @@ function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
 
   return (
     <div className="position absolute top-16 w-full flex justify-center">
-      <form className="flex flex-col justify-between items-center mx-auto mt-12 py-4 w-96 min-h-full border-0 border-base-200 rounded-xl shadow-2xl" onSubmit={handleSubmit}>
+      <form className="flex flex-col justify-between items-center mx-auto mt-12 py-4 mb-8 w-96 min-h-full border-0 border-base-200 rounded-xl shadow-2xl" onSubmit={handleSubmit}>
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold text-secondary">Signup</h2>
         <h3 className="text-md font-light text-accent italic">Start making friends!</h3>
@@ -146,6 +152,9 @@ function SignupForm({ signup, addImage }: SignUpFormPropsInterface) {
               className=" file-input file-input-bordered file-input-accent w-full font-extralight text-gray-600"
               />
           </div>
+        </div>
+        <div className="px-1 my-4">
+          {alerts.length > 0 && <Alert alert={alerts} />}
         </div>
         <button type="submit" className="btn btn-primary">Sign Up</button>
       </form>
