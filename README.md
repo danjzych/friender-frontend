@@ -1,8 +1,6 @@
 <a name="readme-top"></a>
-
-# Friender Frontend
-
 <br />
+
 <div align="center">
   <a href="https://github.com/danjzych/friender-frontend">
     <h1>Friender</h1>
@@ -32,8 +30,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Installation and Setup</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -75,7 +72,7 @@ To get a local version of Friender up and running, do the following. Note that, 
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/danjzych/friender-backend.git
+   git clone https://github.com/danjzych/friender-frontend.git
    ```
 2. Install project dependencies
 
